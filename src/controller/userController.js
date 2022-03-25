@@ -1,4 +1,5 @@
 const userModel = require("../models/userModel")
+const jwt = require("jsonwebtoken")
 
 const isValid = function (value) {
     if (typeof value == undefined || value == null) return false
@@ -14,6 +15,9 @@ const isvalidTitle = function(title){
 }
 
 
+
+
+
 const createUser = async function(req,res){
   
 try{ 
@@ -21,9 +25,7 @@ try{
     const data = req.body
 //if(!data){return res.status(400).send({status:false, ERROR: "Please input some data to create User"})}
 
-
 if(!isValidRequestBody(data)){return res.status(400).send({status:false, ERROR: "please provide Data"})}
-
 
 if(!isValid(data.title)){return res.status(400).send({status:false, ERROR: "title required"})}
 if(!isvalidTitle(data.title)){return res.status(400).send({status:false, ERROR: "valid title required"})}
@@ -65,4 +67,35 @@ let duplicateMobile = await userModel.findOne({phone: data.phone})
    return res.status(500).send({Status:false, ERROR: error.message })
 }}
 
+
+
+const userLogin = async function(req,res){
+
+try{
+    let data= req.body
+//const requiredData ={ email:data.email, password:data.password}
+
+if(!isValid(data.email)){return res.status(400).send({status:false, ERROR: "please input valid emailId"})}
+
+if(!isValid(data.password)){return res.status(400).send({status:false, ERROR: "please input valid password"})}
+
+const user= await userModel.findOne({email:data.email, password:data.password})
+if(!user){return res.status(404).send({status:false, ERROR:"User not  found"})}
+
+const token = jwt.sign({
+    userId: data.emaill._id,
+}, "project3group17",{expiresIn:'300s'})
+
+res.status(200).setHeader("group17", token)
+return res.status(201).send({status:true,message: "SuccessFully LoggedIn",TOKEN:token})
+
+}catch (err){
+    res.status(500).send({status:false, ERROR: err.message})
+}}
+
+
+
+
+
 module.exports.createUser = createUser
+module.exports.userLogin=userLogin

@@ -2,6 +2,10 @@
 
 ## Project - Books Management
 
+database string: mongodb+srv://group13:UEEqzwKeluhyT2uM@cluster0.hkvjs.mongodb.net/group5Database?retryWrites=true&w=majority
+branchLink: https://github.com/Manish-162403/bookManagement/tree/project/booksManagementGroup17
+repoLink:https://github.com/Manish-162403/bookManagement.git
+
 ### Key points
 - Create a group database `groupXDatabase`. You can clean the db you previously used and resue that.
 - This time each group should have a *single git branch*. Coordinate amongst yourselves by ensuring every next person pulls the code last pushed by a team mate. You branch will be checked as part of the demo. Branch name should follow the naming convention `project/booksManagementGroupX`
