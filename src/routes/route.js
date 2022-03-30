@@ -22,5 +22,7 @@ router.delete("/books/:bookId",bookController.deleteBookById)
 
 router.post("/books/:bookId/review", reviewController.createReview )
 
+router.put("/books/:bookId/review/:reviewId", reviewController.updateReview )
+
 module.exports = router;
 //adding this comment for nothing

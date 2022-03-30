@@ -221,16 +221,16 @@ const updateBook = async function (req, res) {
                     }
 
 
-                    // let checkexcerpt = await bookModel.findOne({excerpt:data.excerpt})
-                    // if(checkexcerpt){return res.status(400).send({status: false, ERROR: "the excerpt you want to update is alreadu updated"})}
+                    let checkexcerpt = await bookModel.findOne({excerpt:data.excerpt})
+                    if(checkexcerpt){return res.status(400).send({status: false, ERROR: "the excerpt you want to update is alreadu updated"})}
 
-                    // let checkreleasedAt = await bookModel.findOne({releasedAt:data.releasedAt})
-                    // if(checkreleasedAt){return res.status(400).send({status: false, ERROR: "the releasedAt you want to update is alreadu updated"})}
+                    let checkreleasedAt = await bookModel.findOne({releasedAt:data.releasedAt})
+                    if(checkreleasedAt){return res.status(400).send({status: false, ERROR: "the releasedAt you want to update is alreadu updated"})}
 
-                    // let checkISBN = await bookModel.findOne({ISBN:data.ISBN})
-                    // if(checkISBN){return res.status(400).send({status: false, ERROR: "the ISBN you want to update is alreadu updated"})}
+                    let checkISBN = await bookModel.findOne({ISBN:data.ISBN})
+                    if(checkISBN){return res.status(400).send({status: false, ERROR: "the ISBN you want to update is alreadu updated"})}
 
-                    // if (isValid(data.title)) { filter['title'] = data.title }
+                    if (isValid(data.title)) { filter['title'] = data.title }
                     if (isValid(data.excerpt)) { filter['excerpt'] = data.excerpt }
                     if (isValid(data.releasedAt)) { filter['releasedAt'] = data.releasedAt }
                     if (isValid(data.ISBN)) { filter['ISBN'] = data.ISBN }
